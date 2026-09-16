@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="cyan">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal home page of Yen - Featuring dynamic time-of-day greeting, precision live digital and analog clock, personal focus tools, and custom themes.">
+  <title>Yen • Personal Space & Live Clock</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient background lighting blobs -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+
+  <div class="app-container">
+    <!-- Top Navigation / Toolbar -->
+    <header class="navbar glass-panel">
+      <div class="nav-brand">
+        <div class="brand-avatar" id="brand-avatar">Y</div>
+        <div class="brand-info">
+          <span class="brand-greeting" id="mini-greeting">Hello,</span>
+          <span class="brand-name" id="nav-user-name">Yen</span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Accent Color Picker -->
+        <div class="accent-picker" title="Choose accent color">
+          <button class="accent-dot cyan active" data-color="cyan" aria-label="Cyan accent"></button>
+          <button class="accent-dot violet" data-color="violet" aria-label="Violet accent"></button>
+          <button class="accent-dot emerald" data-color="emerald" aria-label="Emerald accent"></button>
+          <button class="accent-dot sunset" data-color="sunset" aria-label="Sunset accent"></button>
+        </div>
+
+        <!-- Light/Dark Mode Switch -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      <!-- Left Column: User Profile & Hero Greeting -->
+      <section class="profile-card glass-panel" aria-label="User Profile">
+        <div class="profile-header">
+          <div class="avatar-wrapper">
+            <div class="avatar-ring"></div>
+            <div class="avatar-img" id="main-avatar">Y</div>
+            <span class="status-indicator online" title="Status: Active"></span>
+          </div>
+
+          <div class="user-identity">
+            <div class="greeting-row">
+              <span class="greeting-icon" id="greeting-icon">☀️</span>
+              <span class="greeting-text" id="dynamic-greeting">Good day</span>
+            </div>
+            
+            <div class="name-editor-wrapper">
+              <h1 class="user-display-name" id="user-display-name">Yen</h1>
+              <button class="edit-name-btn" id="edit-name-btn" title="Edit your name" aria-label="Edit name">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Inline Name Edit Form -->
+            <form class="name-edit-form hidden" id="name-edit-form">
+              <input type="text" id="name-input" class="name-input" maxlength="32" placeholder="Enter your name" required>
+              <div class="edit-actions">
+                <button type="submit" class="save-name-btn" title="Save name">✓</button>
+                <button type="button" class="cancel-name-btn" id="cancel-name-btn" title="Cancel">✕</button>
+              </div>
+            </form>
+
+            <p class="user-tagline" id="user-tagline">Explorer • Builder • Lifelong Learner</p>
+          </div>
+        </div>
+
+        <div class="profile-badges">
+          <span class="badge badge-accent">
+            <span class="pulse-dot"></span> Active Now
+          </span>
+          <span class="badge" id="timezone-badge">Local Time</span>
+        </div>
+
+        <!-- Quick Quote / Reflection -->
+        <div class="quote-card">
+          <p class="quote-text" id="quote-text">"Make each day your masterpiece."</p>
+          <span class="quote-author" id="quote-author">— John Wooden</span>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+          <h3 class="section-subtitle">Quick Connect</h3>
+          <div class="links-row">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link-btn" id="link-github" title="GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="link-btn" id="link-linkedin" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:hello@example.com" class="link-btn" id="link-email" title="Email Me">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Interactive Time Center -->
+      <section class="clock-showcase glass-panel" aria-label="Current Time Center">
+        <div class="clock-toolbar">
+          <div class="clock-title-group">
+            <span class="badge badge-accent">Live Timekeeper</span>
+            <span class="date-tag" id="current-day-name">Wednesday</span>
+          </div>
+
+          <div class="clock-controls">
+            <!-- 12h / 24h toggle -->
+            <button class="toggle-pill" id="format-toggle-btn" title="Switch 12-hour or 24-hour mode">
+              <span id="format-label">24H</span>
+            </button>
+            <!-- Copy timestamp -->
+            <button class="icon-tool-btn" id="copy-time-btn" title="Copy timestamp to clipboard" aria-label="Copy timestamp">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Digital Clock -->
+        <div class="digital-clock-container">
+          <div class="digital-clock-display" id="digital-clock">
+            <span class="clock-part" id="clock-hours">10</span>
+            <span class="clock-separator">:</span>
+            <span class="clock-part" id="clock-minutes">24</span>
+            <span class="clock-separator">:</span>
+            <span class="clock-part seconds" id="clock-seconds">00</span>
+            <span class="clock-ampm" id="clock-ampm">AM</span>
+          </div>
+          
+          <div class="calendar-display" id="calendar-display">
+            September 16, 2026
+          </div>
+        </div>
+
+        <!-- Dual visualizer: Analog Clock & Time Metrics -->
+        <div class="clock-details-grid">
+          <!-- Elegant Analog Clock -->
+          <div class="analog-clock-wrapper">
+            <div class="analog-clock" id="analog-clock" aria-hidden="true">
+              <!-- Dial marks (12 ticks) -->
+              <div class="dial-mark mark-12"></div>
+              <div class="dial-mark mark-3"></div>
+              <div class="dial-mark mark-6"></div>
+              <div class="dial-mark mark-9"></div>
+
+              <!-- Hands -->
+              <div class="clock-hand hour-hand" id="hour-hand"></div>
+              <div class="clock-hand minute-hand" id="minute-hand"></div>
+              <div class="clock-hand second-hand" id="second-hand"></div>
+              <div class="clock-center-pin"></div>
+            </div>
+            <span class="analog-caption">Analog View</span>
+          </div>
+
+          <!-- Time Info & Productivity Widget -->
+          <div class="productivity-widget">
+            <div class="metric-card">
+              <span class="metric-label">Timezone</span>
+              <span class="metric-value" id="tz-name">UTC+8</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Day of Year</span>
+              <span class="metric-value" id="day-of-year">Day 259</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Week Number</span>
+              <span class="metric-value" id="week-number">Week 38</span>
+            </div>
+
+            <!-- Mini Focus Stopwatch -->
+            <div class="focus-timer-box">
+              <div class="timer-header">
+                <span>Quick Focus Timer</span>
+                <span class="timer-digits" id="timer-display">00:00</span>
+              </div>
+              <div class="timer-controls">
+                <button class="timer-btn primary" id="timer-toggle-btn">Start</button>
+                <button class="timer-btn" id="timer-reset-btn">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Designed with care for <span id="footer-user-name">Yen</span> • Precision Real-Time Dashboard</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
