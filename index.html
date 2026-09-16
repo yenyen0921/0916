@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-accent="cyan">
+<html lang="zh-TW" data-theme="dark" data-accent="cyan">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal home page of Yen - Featuring dynamic time-of-day greeting, precision live digital and analog clock, personal focus tools, and custom themes.">
-  <title>Yen • Personal Space & Live Clock</title>
+  <meta name="description" content="Yen 的個人網站 (DIC-1 Personal Page) - 包含個人簡介、專業技能、作品專案與高精度即時 JavaScript 時鐘。">
+  <title>Yen • DIC-1 Personal Page & Live Clock</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Ambient background lighting blobs -->
@@ -25,22 +25,29 @@
       <div class="nav-brand">
         <div class="brand-avatar" id="brand-avatar">Y</div>
         <div class="brand-info">
-          <span class="brand-greeting" id="mini-greeting">Hello,</span>
-          <span class="brand-name" id="nav-user-name">Yen</span>
+          <span class="brand-badge">DIC-1 // 2026</span>
+          <span class="brand-name" id="nav-user-name">Yen • Personal Space</span>
         </div>
       </div>
 
+      <nav class="nav-links">
+        <a href="#profile" class="nav-link">個人簡介</a>
+        <a href="#clock" class="nav-link">即時時鐘</a>
+        <a href="#skills" class="nav-link">專業技能</a>
+        <a href="#projects" class="nav-link">精選專案</a>
+      </nav>
+
       <div class="nav-actions">
         <!-- Accent Color Picker -->
-        <div class="accent-picker" title="Choose accent color">
-          <button class="accent-dot cyan active" data-color="cyan" aria-label="Cyan accent"></button>
-          <button class="accent-dot violet" data-color="violet" aria-label="Violet accent"></button>
-          <button class="accent-dot emerald" data-color="emerald" aria-label="Emerald accent"></button>
-          <button class="accent-dot sunset" data-color="sunset" aria-label="Sunset accent"></button>
+        <div class="accent-picker" title="切換主色調">
+          <button class="accent-dot cyan active" data-color="cyan" aria-label="Cyan 主色"></button>
+          <button class="accent-dot violet" data-color="violet" aria-label="Violet 主色"></button>
+          <button class="accent-dot emerald" data-color="emerald" aria-label="Emerald 主色"></button>
+          <button class="accent-dot sunset" data-color="sunset" aria-label="Sunset 主色"></button>
         </div>
 
         <!-- Light/Dark Mode Switch -->
-        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="切換淺色/深色主題" title="切換深淺模式">
           <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -59,26 +66,26 @@
       </div>
     </header>
 
-    <!-- Main Content Grid -->
-    <main class="main-layout">
-      <!-- Left Column: User Profile & Hero Greeting -->
-      <section class="profile-card glass-panel" aria-label="User Profile">
+    <!-- Row 1: Profile Card + Live Clock Showcase -->
+    <div class="hero-grid">
+      <!-- 1. Profile Section -->
+      <section class="profile-card glass-panel" id="profile" aria-label="個人簡介 Profile">
         <div class="profile-header">
           <div class="avatar-wrapper">
             <div class="avatar-ring"></div>
             <div class="avatar-img" id="main-avatar">Y</div>
-            <span class="status-indicator online" title="Status: Active"></span>
+            <span class="status-indicator online" title="Status: 在線中"></span>
           </div>
 
           <div class="user-identity">
             <div class="greeting-row">
               <span class="greeting-icon" id="greeting-icon">☀️</span>
-              <span class="greeting-text" id="dynamic-greeting">Good day</span>
+              <span class="greeting-text" id="dynamic-greeting">早安，歡迎蒞臨</span>
             </div>
             
             <div class="name-editor-wrapper">
               <h1 class="user-display-name" id="user-display-name">Yen</h1>
-              <button class="edit-name-btn" id="edit-name-btn" title="Edit your name" aria-label="Edit name">
+              <button class="edit-name-btn" id="edit-name-btn" title="點擊修改姓名" aria-label="修改姓名">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -88,72 +95,71 @@
 
             <!-- Inline Name Edit Form -->
             <form class="name-edit-form hidden" id="name-edit-form">
-              <input type="text" id="name-input" class="name-input" maxlength="32" placeholder="Enter your name" required>
+              <input type="text" id="name-input" class="name-input" maxlength="32" placeholder="輸入您的姓名" required>
               <div class="edit-actions">
-                <button type="submit" class="save-name-btn" title="Save name">✓</button>
-                <button type="button" class="cancel-name-btn" id="cancel-name-btn" title="Cancel">✕</button>
+                <button type="submit" class="save-name-btn" title="儲存">✓</button>
+                <button type="button" class="cancel-name-btn" id="cancel-name-btn" title="取消">✕</button>
               </div>
             </form>
 
-            <p class="user-tagline" id="user-tagline">Explorer • Builder • Lifelong Learner</p>
+            <p class="user-department">資訊工程學系 • AIoT & 軟體開發探索者</p>
+            <p class="user-bio">
+              熱愛探索人工智慧、物聯網與現代 Web 技術。專注於打造兼具高美感介面與穩定效能的科技產品，享受將創意實踐為程式碼的過程！
+            </p>
           </div>
         </div>
 
         <div class="profile-badges">
           <span class="badge badge-accent">
-            <span class="pulse-dot"></span> Active Now
+            <span class="pulse-dot"></span> System Online
           </span>
-          <span class="badge" id="timezone-badge">Local Time</span>
-        </div>
-
-        <!-- Quick Quote / Reflection -->
-        <div class="quote-card">
-          <p class="quote-text" id="quote-text">"Make each day your masterpiece."</p>
-          <span class="quote-author" id="quote-author">— John Wooden</span>
+          <span class="badge" id="timezone-badge">Asia/Taipei (GMT+8)</span>
+          <span class="badge">DIC-1 Assignment</span>
         </div>
 
         <!-- Quick Links -->
         <div class="quick-links">
-          <h3 class="section-subtitle">Quick Connect</h3>
+          <h3 class="section-subtitle">社群與連結 (Connect)</h3>
           <div class="links-row">
-            <a href="https://github.com/yenyen0921/0916" target="_blank" rel="noopener noreferrer" class="link-btn" id="link-github" title="GitHub">
+            <a href="https://github.com/yenyen0921/0916" target="_blank" rel="noopener noreferrer" class="link-btn" id="link-github" title="GitHub 倉庫">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
               </svg>
-              <span>GitHub</span>
+              <span>GitHub 專案</span>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="link-btn" id="link-linkedin" title="LinkedIn">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            <a href="https://github.com/yenyen0921" target="_blank" rel="noopener noreferrer" class="link-btn" title="個人 GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
               </svg>
-              <span>LinkedIn</span>
+              <span>個人主頁</span>
             </a>
-            <a href="mailto:hello@example.com" class="link-btn" id="link-email" title="Email Me">
+            <a href="mailto:hello@example.com" class="link-btn" id="link-email" title="Email 聯繫">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              <span>Email</span>
+              <span>聯絡信箱</span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- Right Column: Interactive Time Center -->
-      <section class="clock-showcase glass-panel" aria-label="Current Time Center">
+      <!-- 4. Live Clock Section -->
+      <section class="clock-showcase glass-panel" id="clock" aria-label="即時時鐘 Live Clock">
         <div class="clock-toolbar">
           <div class="clock-title-group">
-            <span class="badge badge-accent">Live Timekeeper</span>
+            <span class="badge badge-accent">即時 JavaScript 時鐘</span>
             <span class="date-tag" id="current-day-name">Wednesday</span>
           </div>
 
           <div class="clock-controls">
             <!-- 12h / 24h toggle -->
-            <button class="toggle-pill" id="format-toggle-btn" title="Switch 12-hour or 24-hour mode">
-              <span id="format-label">24H</span>
+            <button class="toggle-pill" id="format-toggle-btn" title="切換 12 小時制 / 24 小時制">
+              <span id="format-label">24H 制</span>
             </button>
             <!-- Copy timestamp -->
-            <button class="icon-tool-btn" id="copy-time-btn" title="Copy timestamp to clipboard" aria-label="Copy timestamp">
+            <button class="icon-tool-btn" id="copy-time-btn" title="複製目前時間戳記" aria-label="複製時間戳記">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -165,16 +171,16 @@
         <!-- Hero Digital Clock -->
         <div class="digital-clock-container">
           <div class="digital-clock-display" id="digital-clock">
-            <span class="clock-part" id="clock-hours">10</span>
+            <span class="clock-part" id="clock-hours">11</span>
             <span class="clock-separator">:</span>
-            <span class="clock-part" id="clock-minutes">24</span>
+            <span class="clock-part" id="clock-minutes">05</span>
             <span class="clock-separator">:</span>
             <span class="clock-part seconds" id="clock-seconds">00</span>
             <span class="clock-ampm" id="clock-ampm">AM</span>
           </div>
           
           <div class="calendar-display" id="calendar-display">
-            September 16, 2026
+            2026年9月16日 星期三
           </div>
         </div>
 
@@ -183,55 +189,218 @@
           <!-- Elegant Analog Clock -->
           <div class="analog-clock-wrapper">
             <div class="analog-clock" id="analog-clock" aria-hidden="true">
-              <!-- Dial marks (12 ticks) -->
               <div class="dial-mark mark-12"></div>
               <div class="dial-mark mark-3"></div>
               <div class="dial-mark mark-6"></div>
               <div class="dial-mark mark-9"></div>
 
-              <!-- Hands -->
               <div class="clock-hand hour-hand" id="hour-hand"></div>
               <div class="clock-hand minute-hand" id="minute-hand"></div>
               <div class="clock-hand second-hand" id="second-hand"></div>
               <div class="clock-center-pin"></div>
             </div>
-            <span class="analog-caption">Analog View</span>
+            <span class="analog-caption">指針模擬視圖</span>
           </div>
 
           <!-- Time Info & Productivity Widget -->
           <div class="productivity-widget">
             <div class="metric-card">
-              <span class="metric-label">Timezone</span>
-              <span class="metric-value" id="tz-name">UTC+8</span>
+              <span class="metric-label">時區 Timezone</span>
+              <span class="metric-value" id="tz-name">GMT+8</span>
             </div>
             <div class="metric-card">
-              <span class="metric-label">Day of Year</span>
-              <span class="metric-value" id="day-of-year">Day 259</span>
+              <span class="metric-label">年度天數 Day</span>
+              <span class="metric-value" id="day-of-year">第 259 天</span>
             </div>
             <div class="metric-card">
-              <span class="metric-label">Week Number</span>
-              <span class="metric-value" id="week-number">Week 38</span>
+              <span class="metric-label">年度週次 Week</span>
+              <span class="metric-value" id="week-number">第 38 週</span>
             </div>
 
             <!-- Mini Focus Stopwatch -->
             <div class="focus-timer-box">
               <div class="timer-header">
-                <span>Quick Focus Timer</span>
+                <span>專注計時器 (Stopwatch)</span>
                 <span class="timer-digits" id="timer-display">00:00</span>
               </div>
               <div class="timer-controls">
-                <button class="timer-btn primary" id="timer-toggle-btn">Start</button>
-                <button class="timer-btn" id="timer-reset-btn">Reset</button>
+                <button class="timer-btn primary" id="timer-toggle-btn">開始</button>
+                <button class="timer-btn" id="timer-reset-btn">重置</button>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </main>
+    </div>
+
+    <!-- 2. Skills Section -->
+    <section class="section-container glass-panel" id="skills" aria-label="專業技能 Skills">
+      <div class="section-header">
+        <div>
+          <span class="badge badge-accent">Technical Stack</span>
+          <h2 class="section-title">專業技能 (Skills)</h2>
+        </div>
+        <p class="section-desc">包含程式語言、人工智慧、邊緣物聯網與前端介面開發核心能力。</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon-box">🐍</div>
+          <div class="skill-info">
+            <div class="skill-top">
+              <h3 class="skill-name">Python</h3>
+              <span class="skill-level">進階 (Advanced)</span>
+            </div>
+            <p class="skill-desc">熟悉資料處理、機器學習建模、自動化腳本與 RESTful API 後端服務開發。</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon-box">⚡</div>
+          <div class="skill-info">
+            <div class="skill-top">
+              <h3 class="skill-name">C / C++</h3>
+              <span class="skill-level">精通 (Proficient)</span>
+            </div>
+            <p class="skill-desc">基礎資料結構與演算法、嵌入式韌體控制、記憶體管理與高效能運算。</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 82%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon-box">🌐</div>
+          <div class="skill-info">
+            <div class="skill-top">
+              <h3 class="skill-name">Web Development</h3>
+              <span class="skill-level">現代前端 (Modern Web)</span>
+            </div>
+            <p class="skill-desc">HTML5 語意化架構、現代 Vanilla CSS (Glassmorphism / Flexbox / Grid) 與 JavaScript DOM 即時交互。</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 88%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon-box">🤖</div>
+          <div class="skill-info">
+            <div class="skill-top">
+              <h3 class="skill-name">Machine Learning & AI</h3>
+              <span class="skill-level">實務應用 (Applied AI)</span>
+            </div>
+            <p class="skill-desc">模型訓練概念、電腦視覺 (Computer Vision)、自然語言處理與 AI 工具整合應用。</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 78%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon-box">📡</div>
+          <div class="skill-info">
+            <div class="skill-top">
+              <h3 class="skill-name">IoT & Embedded Systems</h3>
+              <span class="skill-level">物聯網技術 (IoT)</span>
+            </div>
+            <p class="skill-desc">感測器模組數據擷取、MQTT / HTTP 傳輸協定、微控制器開發 (ESP32/Arduino) 與邊緣端整合。</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon-box">📊</div>
+          <div class="skill-info">
+            <div class="skill-top">
+              <h3 class="skill-name">Data Analysis</h3>
+              <span class="skill-level">數據分析</span>
+            </div>
+            <p class="skill-desc">Pandas、NumPy 數據清洗轉換，Matplotlib 與動態圖表視覺化呈現關鍵指標。</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Projects Section -->
+    <section class="section-container glass-panel" id="projects" aria-label="作品專案 Projects">
+      <div class="section-header">
+        <div>
+          <span class="badge badge-accent">Featured Works</span>
+          <h2 class="section-title">作品專案 (Projects)</h2>
+        </div>
+        <p class="section-desc">展示近期開發的個人專案與實作成果。</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-badge-row">
+            <span class="project-tag">DIC-1 作業核心</span>
+            <span class="project-date">2026</span>
+          </div>
+          <h3 class="project-title">Personal Page & Real-Time Clock</h3>
+          <p class="project-description">
+            使用 Antigravity 打造的高質感響應式個人主頁。結合精確即時雙模 JavaScript 時鐘、動態時段問候語、姓名即時修改存取，以及深淺色彩與多套 Neon 霓虹主題切換。
+          </p>
+          <div class="project-tech-tags">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">Vanilla CSS</span>
+            <span class="tech-tag">JavaScript ES6</span>
+            <span class="tech-tag">Glassmorphism</span>
+            <span class="tech-tag">GitHub Pages</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/yenyen0921/0916" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>檢視 GitHub Repository</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-badge-row">
+            <span class="project-tag">AIoT 專案</span>
+            <span class="project-date">2026</span>
+          </div>
+          <h3 class="project-title">Smart IoT Telemetry & Monitor Hub</h3>
+          <p class="project-description">
+            物聯網感測終端與雲端即時監控系統。透過微控制器擷取溫濕度與環境感測資訊，以 MQTT 協定傳遞至資料中樞，並提供即時圖表警示與自動化控制決策。
+          </p>
+          <div class="project-tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">ESP32 / C++</span>
+            <span class="tech-tag">MQTT Protocol</span>
+            <span class="tech-tag">Edge Computing</span>
+            <span class="tech-tag">Data Visualizer</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/yenyen0921" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>前往專案原始碼</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="app-footer">
-      <p>Designed with care for <span id="footer-user-name">Yen</span> • Precision Real-Time Dashboard</p>
+      <p>DIC-1 Personal Page Assignment • Designed with Antigravity for <span id="footer-user-name">Yen</span></p>
+      <p class="footer-sub">GitHub: <a href="https://github.com/yenyen0921/0916" target="_blank" rel="noopener noreferrer">https://github.com/yenyen0921/0916</a></p>
     </footer>
   </div>
 
